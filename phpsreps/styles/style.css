@@ -1,0 +1,57 @@
+
+/* Styles for ALL pages*/
+* 			{ font-family: candara, sans-serif; }
+html, body	{ margin: 0; padding: 0; }
+
+html			{ height: 100%; }
+body			{ 	position: relative;
+				padding-bottom: 6rem;
+				min-height: 85%; }
+
+h1 			{	font-size: 2.1em;
+				font-weight: bold;
+				margin: 0;
+				padding: 15px; }
+
+header		{	border-bottom: 2px solid darkgray;
+				background-color: lightgray;
+				text-align: left;}
+
+nav			{ 	border-bottom: 2px solid darkgray;
+				background-color: lightgray;
+				z-index: 3;
+				padding-left: 15px; }
+				
+#navigation	{	left: 0%;
+				right: 0%; }
+#navigation.fixed	{	position: fixed;
+						top: 0px; }
+
+.menu		{	display: inline-block; }
+				
+/* hyperlinks (anchor - a) only nested inside <nav> element */
+nav a		{ 	text-decoration: none;
+				color: black;
+				padding: 0.8em 0.6em;
+				margin-right: 2px;
+				border: 2px solid lightgray; }
+nav a:hover, #current	{ 	background-color: lightgray;
+							border-color: black; }						
+
+				
+article		{	padding: 15px; }
+
+footer		{ 	position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				border-top: 2px solid darkgray;
+				clear: both;
+				background-color: lightgray; }
+footer p		{ 	display: inline-block;
+				padding-left: 15px;
+				padding-right:15px;}
+footer p:first-child		{ float: left; width: 33% }
+footer p:nth-child(2)		{ text-align: center; width: 15% }
+footer p:last-child		{ float: right; text-align: right; width: 33% }
+
