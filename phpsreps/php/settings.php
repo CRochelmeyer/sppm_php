@@ -11,10 +11,10 @@
 
 <body>
 	<?php
-		$host = "mysql.ict.swin.edu.au";
-		$user = "s7671148";
-		$pwd = "mysqlpassword";
-		$sql_db = "s7671148_db";
+		$host = "127.0.0.1";
+		$user = "sdpm_user";
+		$pwd = "dBw-Fdu-c6q-tXF";
+		$sql_db = "sdpm_db";
 	?>
 </body>
 
