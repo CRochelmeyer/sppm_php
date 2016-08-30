@@ -40,6 +40,7 @@ nav a:hover, #current	{ 	background-color: lightgray;
 
 				
 article		{	padding: 15px; }
+#errmsg		{	color: red; }
 
 footer		{ 	position: absolute;
 				left: 0;
@@ -52,6 +53,6 @@ footer p		{ 	display: inline-block;
 				padding-left: 15px;
 				padding-right:15px;}
 footer p:first-child		{ float: left; width: 33% }
-footer p:nth-child(2)		{ text-align: center; width: 15% }
+footer p:nth-child(2)		{ text-align: center; width: 25% }
 footer p:last-child		{ float: right; text-align: right; width: 33% }
 
