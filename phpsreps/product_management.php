@@ -56,6 +56,32 @@
 			
 			<input type="submit" value="Add Product" />
 		</form>
+		<br><br>
+		<form method="post" id="find_product" action="find_product_submit.php" >
+			<fieldset>
+				<legend>Find Product</legend>
+				
+				<p><label for="find_product_sku">SKU</label>
+					<input type="text" name="find_product_sku" id="find_product_sku" maxlength="40" size="25" pattern="^[a-zA-Z0-9]+$"  autofocus="autofocus" title="Must only be letters or numbers" />
+				</p>
+				<p><label for="find_product_name">Name</label>
+					<input type="text" name="find_product_name" id="find_product_name" maxlength="100" size="50" pattern="^[a-zA-Z0-9 -]+$"  title="Can only contain A-Z, a-z, 0-9, and -" />
+				</p>
+				<p><label for="find_product_type">Type</label>
+					<input type="text" name="find_product_type" id="find_product_type" maxlength="100" size="50" pattern="^[a-zA-Z0-9 -]+$"  title="Can only contain A-Z, a-z, 0-9, and -" />
+				</p>
+			</fieldset>
+			<?php
+				if (isset ($_SESSION["find_product_result"]) && $_SESSION["find_product_result"] != "")
+				{
+					$message = $_SESSION["find_product_result"];
+					echo "<div id=errmsg>", $message, "</div>";
+					$_SESSION["find_product_result"] = "";
+				}
+			?>
+			
+			<input type="submit" value="Find Product" />
+		</form>
 	</article>
 	
 	<?php
