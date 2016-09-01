@@ -20,7 +20,7 @@
 	$result = $conn->query($query);
 	if ($result->num_rows > 0) {
     	while ($row = $result->fetch_assoc()) {
-        $success = "SKU: " . $row["sku"]. " <br>Name: " . $row["name"]. "<br> Type: " . $row["type"]. "<br>";
+        $success = "SKU: " . $row["sku"]. " <br>Name: " . $row["name"]. "<br> Type: " . $row["type"]. "<br> Price: $" . $row["price_per_unit"]. "<br> Quantity: " . $row["active_for_sale"]. "<br>";
     	}
 	} else {
     	$errMsg = "No results found!";
