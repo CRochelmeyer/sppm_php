@@ -49,10 +49,8 @@ footer		{ 	position: absolute;
 				border-top: 2px solid darkgray;
 				clear: both;
 				background-color: lightgray; }
-footer p		{ 	display: inline-block;
-				padding-left: 15px;
-				padding-right:15px;}
-footer p:first-child		{ float: left; width: 33% }
-footer p:nth-child(2)		{ text-align: center; width: 25% }
-footer p:last-child		{ float: right; text-align: right; width: 33% }
+footer p	{ 	display: inline-block; }
+footer p:first-child		{ padding-left: 5%; text-align: left; width: 30% }
+footer p:nth-child(2)		{ text-align: center; width: 30% }
+footer p:last-child			{ padding-right: 5%; text-align: right; width: 30% }
 
