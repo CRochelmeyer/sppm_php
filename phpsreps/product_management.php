@@ -82,6 +82,40 @@
 			
 			<input type="submit" value="Find Product" />
 		</form>
+		<br><br>
+		<form method="post" id="edit_product" action="edit_product_submit.php" >
+			<fieldset>
+				<legend>Edit Product</legend>
+				
+				<p><br><label for="edit_product_sku">Edit by: SKU</label>
+					<input type="text" name="edit_product_sku" id="edit_product_sku" maxlength="40" size="25" pattern="^[a-zA-Z0-9]+$" required="required" autofocus="autofocus" title="Must only be letters or numbers" />
+				<hr>
+				</p>
+				<p><label for="edit_product_name">Name</label>
+					<input type="text" name="edit_product_name" id="edit_product_name" maxlength="100" size="50" pattern="^[a-zA-Z0-9 -]+$" required="required" title="Can only contain A-Z, a-z, 0-9, and -" />
+				</p>
+				<p><label for="edit_product_type">Type</label>
+					<input type="text" name="edit_product_type" id="edit_product_type" maxlength="100" size="50" pattern="^[a-zA-Z0-9 -]+$" required="required" title="Can only contain A-Z, a-z, 0-9, and -" />
+				</p>
+				<p><label for="edit_product_price">Price Per Unit $</label>
+					<input type="number" name="edit_product_price" id="edit_product_price" step="0.01" min="0" max="99999999.99" required="required" />
+				</p>
+				<p><label for="edit_product_quantity">Quantity</label>
+					<input type="number" name="edit_product_quantity" id="edit_product_quantity" min="0" max="99999" required="required" />
+				</p>
+			</fieldset>
+		
+			<?php
+				if (isset ($_SESSION["edit_product_result"]) && $_SESSION["edit_product_result"] != "")
+				{
+					$message = $_SESSION["edit_product_result"];
+					echo "<div id=errmsg>", $message, "</div>";
+					$_SESSION["edit_product_result"] = "";
+				}
+			?>
+			
+			<input type="submit" value="Edit Product" />
+		</form>
 	</article>
 	
 	<?php
