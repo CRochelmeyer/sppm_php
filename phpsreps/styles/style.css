@@ -1,4 +1,3 @@
-
 /* Styles for ALL pages*/
 * 			{	font-family: candara, sans-serif; }
 html, body	{	margin: 0; padding: 0; }
@@ -43,6 +42,7 @@ nav a:hover, #current {
 				
 article		{	padding: 15px; }
 #errmsg		{	color: red; }
+#success	{	color: green; }
 
 footer		{ 	position: absolute;
 				left: 0;
