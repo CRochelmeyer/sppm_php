@@ -88,29 +88,63 @@
 				<legend>Edit Product</legend>
 				
 				<p><br><label for="edit_product_sku">Edit by: SKU</label>
-					<input type="text" name="edit_product_sku" id="edit_product_sku" maxlength="40" size="25" pattern="^[a-zA-Z0-9]+$" required="required" autofocus="autofocus" title="Must only be letters or numbers" />
+					<input type="text" name="edit_product_sku" id="edit_product_sku" maxlength="255" size="25" />
+				<?php
+					if (isset ($_SESSION["edit_product_v_sku"]) && $_SESSION["edit_product_v_sku"] != "")
+					{
+						echo $_SESSION["edit_product_v_sku"];
+						unset($_SESSION["edit_product_v_sku"]);
+					}
+				?>
 				<hr>
 				</p>
 				<p><label for="edit_product_name">Name</label>
-					<input type="text" name="edit_product_name" id="edit_product_name" maxlength="100" size="50" pattern="^[a-zA-Z0-9 -]+$" required="required" title="Can only contain A-Z, a-z, 0-9, and -" />
+					<input type="text" name="edit_product_name" id="edit_product_name" maxlength="255" size="50" />
+				<?php
+					if (isset ($_SESSION["edit_product_v_name"]) && $_SESSION["edit_product_v_name"] != "")
+					{
+						echo $_SESSION["edit_product_v_name"];
+						unset($_SESSION["edit_product_v_name"]);
+					}
+				?>
 				</p>
 				<p><label for="edit_product_type">Type</label>
-					<input type="text" name="edit_product_type" id="edit_product_type" maxlength="100" size="50" pattern="^[a-zA-Z0-9 -]+$" required="required" title="Can only contain A-Z, a-z, 0-9, and -" />
+					<input type="text" name="edit_product_type" id="edit_product_type" maxlength="255" size="50" />
+				<?php
+					if (isset ($_SESSION["edit_product_v_type"]) && $_SESSION["edit_product_v_type"] != "")
+					{
+						echo $_SESSION["edit_product_v_type"];
+						unset($_SESSION["edit_product_v_type"]);
+					}
+				?>
 				</p>
 				<p><label for="edit_product_price">Price Per Unit $</label>
-					<input type="number" name="edit_product_price" id="edit_product_price" step="0.01" min="0" max="99999999.99" required="required" />
+					<input type="number" name="edit_product_price" id="edit_product_price" step="0.01" min="0" />
+				<?php
+					if (isset ($_SESSION["edit_product_v_price"]) && $_SESSION["edit_product_v_price"] != "")
+					{
+						echo $_SESSION["edit_product_v_price"];
+						unset($_SESSION["edit_product_v_price"]);
+					}
+				?>
 				</p>
 				<p><label for="edit_product_quantity">Quantity</label>
-					<input type="number" name="edit_product_quantity" id="edit_product_quantity" min="0" max="99999" required="required" />
+					<input type="number" name="edit_product_quantity" id="edit_product_quantity" min="0" max="99999" />
+					<?php
+					if (isset ($_SESSION["edit_product_v_quantity"]) && $_SESSION["edit_product_v_quantity"] != "")
+					{
+						echo $_SESSION["edit_product_v_quantity"];
+						unset($_SESSION["edit_product_v_quantity"]);
+					}
+				?>
 				</p>
 			</fieldset>
 		
 			<?php
 				if (isset ($_SESSION["edit_product_result"]) && $_SESSION["edit_product_result"] != "")
 				{
-					$message = $_SESSION["edit_product_result"];
-					echo "<div id=errmsg>", $message, "</div>";
-					$_SESSION["edit_product_result"] = "";
+					echo $_SESSION["edit_product_result"];
+					unset($_SESSION["edit_product_result"]);
 				}
 			?>
 			
