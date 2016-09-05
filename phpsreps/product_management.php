@@ -24,7 +24,7 @@
 	<article>
 		<h2>Product Management</h2>
 		
-		<form method="post" id="add_product" action="add_product_submit.php" >
+		<form method="post" id="add_product" action="add_product_submit.php" novalidate="novalidate" >
 			<fieldset>
 				<legend>Add Product</legend>
 				
@@ -55,6 +55,7 @@
 			?>
 			
 			<input type="submit" value="Add Product" />
+			<input type="submit" name="reset" value="Reset" />
 		</form>
 		<br><br>
 		<form method="post" id="find_product" action="find_product_submit.php" >
@@ -62,15 +63,16 @@
 				<legend>Find Product</legend>
 				
 				<p><label for="find_product_sku">SKU</label>
-					<input type="text" name="find_product_sku" id="find_product_sku" maxlength="40" size="25" pattern="^[a-zA-Z0-9]+$"  autofocus="autofocus" title="Must only be letters or numbers" />
+					<input type="text" name="find_product_sku" id="find_product_sku" maxlength="40" size="25" pattern="^[a-zA-Z0-9]+$" title="Must only be letters or numbers" />
 				</p>
 				<p><label for="find_product_name">Name</label>
-					<input type="text" name="find_product_name" id="find_product_name" maxlength="100" size="50" pattern="^[a-zA-Z0-9 -]+$"  title="Can only contain A-Z, a-z, 0-9, and -" />
+					<input type="text" name="find_product_name" id="find_product_name" maxlength="100" size="50" pattern="^[a-zA-Z0-9 -]+$" title="Can only contain A-Z, a-z, 0-9, and -" />
 				</p>
 				<p><label for="find_product_type">Type</label>
-					<input type="text" name="find_product_type" id="find_product_type" maxlength="100" size="50" pattern="^[a-zA-Z0-9 -]+$"  title="Can only contain A-Z, a-z, 0-9, and -" />
+					<input type="text" name="find_product_type" id="find_product_type" maxlength="100" size="50" pattern="^[a-zA-Z0-9 -]+$" title="Can only contain A-Z, a-z, 0-9, and -" />
 				</p>
 			</fieldset>
+			
 			<?php
 				if (isset ($_SESSION["find_product_result"]) && $_SESSION["find_product_result"] != "")
 				{
