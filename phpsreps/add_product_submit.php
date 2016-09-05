@@ -12,7 +12,7 @@
 	
 	if ($_POST["add_product_sku"] != "")
 	{
-		$sku = htmlspecialchars (trim ($_POST["add_product_sku"]));
+		$sku = htmlspecialchars (trim (stripslashes ($_POST["add_product_sku"])));
 		if (!preg_match ("/^[a-zA-Z0-9]+$/", $sku) || strlen ($sku) > 40)
 			$errMsg .= "SKU must only be letters or numbers and <= 40 characters long.<br />";
 	}
@@ -21,7 +21,7 @@
 	
 	if ($_POST["add_product_name"] != "")
 	{
-		$name = htmlspecialchars (trim ($_POST["add_product_name"]));
+		$name = htmlspecialchars (trim (stripslashes ($_POST["add_product_name"])));
 		if (!preg_match ("/^[a-zA-Z0-9 -]+$/", $name) || strlen ($name) > 100)
 			$errMsg .= "Name can only contain A-Z, a-z, 0-9, and - and be <= 100 characters long.<br />";
 	}
@@ -30,7 +30,7 @@
 	
 	if ($_POST["add_product_type"] != "")
 	{
-		$type = htmlspecialchars (trim ($_POST["add_product_type"]));
+		$type = htmlspecialchars (trim (stripslashes ($_POST["add_product_type"])));
 		if (!preg_match( "/^[a-zA-Z0-9 -]+$/", $type) || strlen ($type) > 100)
 			$errMsg .= "Type can only contain A-Z, a-z, 0-9, and - and be <= 100 characters long.<br />";
 	}
@@ -39,8 +39,8 @@
 	
 	if ($_POST["add_product_price"] != "")
 	{
-		$price = htmlspecialchars (trim ($_POST["add_product_price"]));
-		if (!preg_match ("/^[0-9.]+$/", $price) || $price < 0 || $price > 99999999.99)
+		$price = htmlspecialchars (trim (stripslashes ($_POST["add_product_price"])));
+		if (!is_numeric ($price) || $price < 0 || $price > 99999999.99)
 			$errMsg .= "Price must be >= 0 and less than 99999999.99.<br />";
 	}
 	else
@@ -48,8 +48,8 @@
 	
 	if ($_POST["add_product_quantity"] != "")
 	{
-		$quantity = htmlspecialchars (trim ($_POST["add_product_quantity"]));
-		if (!preg_match ("/^[0-9.]+$/", $quantity) || $quantity < 0 || $quantity > 99999)
+		$quantity = htmlspecialchars (trim (stripslashes ($_POST["add_product_quantity"])));
+		if (!is_numeric ($quantity) || $quantity < 0 || $quantity > 99999)
 			$errMsg .= "Quantity must be > 0 and less than 99999.<br />";
 	}
 	else
