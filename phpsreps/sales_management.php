@@ -1,3 +1,7 @@
+<?php
+	session_start();							//start the session
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +22,72 @@
 	?>
 	
 	<article>
-		<h2>Sales Page</h2>
+		<h2>Sales Management</h2>
+		
+		<hr>
+		
+		<form method="post" id="add_sale" action="add_sale_submit.php" novalidate="novalidate" >
+			<h3>Create Sale</h3>
+			<fieldset>
+				<legend>Add Product to Sale</legend>
+				
+				<p><label for="add_sale_id">Product ID</label>
+					<input type="number" name="add_sale_id" min="0" max="99999999999" autofocus="autofocus" /> &nbsp
+					
+					<label for="add_sale_sku">Product SKU</label>
+					<input type="text" name="add_sale_sku" maxlength="40" size="25" pattern="^[a-zA-Z0-9]+$"  title="Must only be letters or numbers" /> &nbsp
+					
+					<label for="add_sale_name">Product Name</label>
+					<input type="text" name="add_sale_name" maxlength="100" size="25" pattern="^[a-zA-Z0-9 -]+$" title="Can only contain A-Z, a-z, 0-9, and -" /> &nbsp
+					
+					<label for="add_sale_quantity">Quantity Sold</label>
+					<input type="number" name="add_sale_quantity" min="0" max="99999" />
+				</p>
+			</fieldset>
+			
+			<?php
+				if (isset ($_SESSION["add_product_error"]) && $_SESSION["add_product_error"] != "")
+				{
+					$message = $_SESSION["add_product_error"];
+					echo "<div id=errmsg>", $message, "</div>";
+					$_SESSION["add_product_error"] = "";
+				}
+			?>
+			
+			<input type="submit" name="add" value="Add Product" />
+		
+			<?php			
+				if (isset ($_SESSION["sale_table"]) && $_SESSION["sale_table"] != "")
+				{
+					$message = $_SESSION["sale_table"];
+					echo "<div id=sale_table>", $message, "</div>";
+				}
+			?>
+			
+			<input type="submit" name="removeBtn" value="Remove Products" />
+			<input type="submit" name="reset" value="Reset" />
+			<input type="submit" name="complete" value="Complete Sale" />
+		
+			<?php
+				if (isset ($_SESSION["complete_sale_err"]) && $_SESSION["complete_sale_err"] != "")
+				{
+					$message = $_SESSION["complete_sale_err"];
+					echo "<div id=errmsg>", $message, "</div>";
+					$_SESSION["complete_sale_err"] = "";
+				}
+				else if (isset ($_SESSION["complete_sale_success"]) && $_SESSION["complete_sale_success"] != "")
+				{
+					$message = $_SESSION["complete_sale_success"];
+					echo "<div id=errmsg>", $message, "</div>";
+					$_SESSION["complete_sale_success"] = "";
+					unset ($_SESSION["sale_table"]);
+				}
+			?>
+		</form>
+		
+		<hr>
+		
+		
 	</article>
 	
 	<?php
