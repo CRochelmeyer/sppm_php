@@ -12,6 +12,39 @@
 	<meta name="author" 		content="Chris Hendrickson, Leon Vaisman, Claire Rochelmeyer"  />
 	<title>PHP-SRePS - Products</title>
 	<link href= "styles/style.css" rel="stylesheet"/>
+	<script src="jquery.min.js"></script>
+	<script type="text/javascript">
+function deleteConfirm(){
+    var result = confirm("Are you sure to delete this item(s)?");
+    if(result){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+$(document).ready(function(){
+    $('#select_all').on('click',function(){
+        if(this.checked){
+            $('.checkbox').each(function(){
+                this.checked = true;
+            });
+        }else{
+             $('.checkbox').each(function(){
+                this.checked = false;
+            });
+        }
+  });
+    
+    $('.checkbox').on('click',function(){
+        if($('.checkbox:checked').length == $('.checkbox').length){
+            $('#select_all').prop('checked',true);
+        }else{
+            $('#select_all').prop('checked',false);
+        }
+    });
+});
+</script>
 </head>
 
 <body>
@@ -151,6 +184,40 @@
 			?>
 			
 			<input type="submit" value="Edit Product" />
+		</form>
+		<h2>Inventory</h2>
+		<?php
+			require_once( "php/settings.php" );
+			$conn = @mysqli_connect( $host, $user, $pwd, $sql_db );
+    		$query = mysqli_query($conn,"SELECT * FROM product");
+		?>
+		<form name="bulk_action_form" action="delete_product_submit.php" method="post" onsubmit="return deleteConfirm();"/>
+    		<table class="bordered">
+        		<thead>
+        		<tr>
+            		<th><input type="checkbox" name="select_all" id="select_all" value=""/></th>        
+            		<th>SKU</th>
+            		<th>Name</th>
+            		<th>Type</th>
+            		<th>Price</th>
+        		</tr>
+        		</thead>
+        		<?php
+            		if(mysqli_num_rows($query) > 0){
+                		while($row = mysqli_fetch_assoc($query)){
+        		?>
+        		<tr>
+            		<td align="center"><input type="checkbox" name="checked_id[]" class="checkbox" value="<?php echo $row['sku']; ?>"/></td>        
+            		<td><?php echo $row['sku']; ?></td>
+            		<td><?php echo $row['name']; ?></td>
+            		<td><?php echo $row['type']; ?></td>
+            		<td><?php echo $row['price_per_unit']; ?></td>
+        		</tr> 
+        		<?php } }else{ ?>
+            		<tr><td colspan="5">No records found.</td></tr> 
+        		<?php } ?>
+    		</table>
+    		<input type="submit" class="btn btn-danger" name="bulk_delete_submit" value="Delete"/>
 		</form>
 	</article>
 	
