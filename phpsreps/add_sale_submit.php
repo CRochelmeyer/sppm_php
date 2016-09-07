@@ -107,7 +107,7 @@
 				$errMsg .= "Quantity must be > 0 and less than 99999.<br />";
 		}
 		else
-			$errMsg .= "Fill in quantity sold.<br />";
+			$quantity = 1;
 		
 		// If validation fails return to sales_management
 		if ($errMsg != "")
