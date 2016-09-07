@@ -146,6 +146,9 @@
 					if (mysqli_num_rows ($result) > 1)
 					{
 						$errMsg = "There is more than one product that matches your search terms.<br \>";
+					}else if (mysqli_num_rows ($result) <= 0)
+					{
+						$errMsg = "The product you searched for couldn't be found.<br \>";
 					}else
 					{
 						$row = mysqli_fetch_assoc ($result);
