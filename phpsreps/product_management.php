@@ -185,17 +185,19 @@ $(document).ready(function(){
 			
 			<input type="submit" value="Edit Product" />
 		</form>
-		<h2>Inventory</h2>
+		<br><br>
 		<?php
 			require_once( "php/settings.php" );
 			$conn = @mysqli_connect( $host, $user, $pwd, $sql_db );
     		$query = mysqli_query($conn,"SELECT * FROM product");
 		?>
 		<form name="bulk_action_form" action="delete_product_submit.php" method="post" onsubmit="return deleteConfirm();"/>
-    		<table class="bordered">
+    		<fieldset>
+    		<legend>Delete Product</legend>
+    		<table border="1">
         		<thead>
         		<tr>
-            		<th><input type="checkbox" name="select_all" id="select_all" value=""/></th>        
+            		<th>Select All<input type="checkbox" name="select_all" id="select_all" value=""/></th>        
             		<th>SKU</th>
             		<th>Name</th>
             		<th>Type</th>
@@ -217,8 +219,10 @@ $(document).ready(function(){
             		<tr><td colspan="5">No records found.</td></tr> 
         		<?php } ?>
     		</table>
+    		</fieldset>
     		<input type="submit" class="btn btn-danger" name="bulk_delete_submit" value="Delete"/>
 		</form>
+		<br><br>
 	</article>
 	
 	<?php
