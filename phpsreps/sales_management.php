@@ -84,10 +84,42 @@
 				}
 			?>
 		</form>
-		
+		<br><br>
+		<br><br>
+		<?php
+			require_once( "php/settings.php" );
+			$conn = @mysqli_connect( $host, $user, $pwd, $sql_db );
+    		$query = mysqli_query($conn,"SELECT product_sale_item.product_id, product_sale_item.quantity_sold, sale.sale_id, sale.time_created, sale.sale_amount FROM product_sale_item INNER JOIN sale ON product_sale_item.sale_id=sale.sale_id");
+		?>
+			<fieldset>
+				<legend>All Sales</legend>
+				<table border="1">
+				<thead>
+        		<tr>
+        			<th>Product ID</th>
+            		<th>Sale ID</th>
+            		<th>Quantity</th>
+            		<th>Time of Sale</th>
+            		<th>Total</th>
+        		</tr>
+        		</thead>
+				<?php
+            		if(mysqli_num_rows($query) > 0){
+                		while($row = mysqli_fetch_assoc($query)){
+        		?>
+        		<tr>
+        			<td><?php echo $row['product_id']; ?></td>        
+            		<td><?php echo $row['sale_id']; ?></td>
+            		<td><?php echo $row['quantity_sold']; ?></td>
+            		<td><?php echo $row['time_created']; ?></td>
+            		<td><?php echo $row['sale_amount']; ?></td>
+        		</tr> 
+        		<?php } }else{ ?>
+            		<tr><td colspan="5">No records found.</td></tr> 
+        		<?php } ?>
+        		</table>
+			</fieldset>
 		<hr>
-		
-		
 	</article>
 	
 	<?php
