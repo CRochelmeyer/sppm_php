@@ -23,6 +23,11 @@
 	else
 		echo "<p class=\"menu\"><a href=\"reports.php\">Reports</a></p>";
 	
+	if( $current == "prediction" )
+		echo "<p class=\"menu\"><a href=\"sales_prediction.php\" id=\"current\">Predictions</a></p>";
+	else
+		echo "<p class=\"menu\"><a href=\"sales_prediction.php\">Predictions</a></p>";
+	
 	echo "</nav>";
 ?>
 

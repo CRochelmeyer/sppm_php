@@ -22,7 +22,7 @@
 	?>
 	
 	<article>
-		<h2>Sales Management</h2>
+		<h2>Sales Reports</h2>
 		
 		<hr>
 		

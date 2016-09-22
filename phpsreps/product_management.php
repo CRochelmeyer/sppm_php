@@ -57,9 +57,12 @@ $(document).ready(function(){
 	<article>
 		<h2>Product Management</h2>
 		
+		<hr>
+		
 		<form method="post" id="add_product" action="add_product_submit.php" novalidate="novalidate" >
+			<h3>Add Product</h3>
 			<fieldset>
-				<legend>Add Product</legend>
+				<legend>Product Details</legend>
 				
 				<p><label for="add_product_sku">SKU</label>
 					<input type="text" name="add_product_sku" id="add_product_sku" maxlength="40" size="25" pattern="^[a-zA-Z0-9]+$" required="required" autofocus="autofocus" title="Must only be letters or numbers" />
@@ -90,10 +93,13 @@ $(document).ready(function(){
 			<input type="submit" value="Add Product" />
 			<input type="submit" name="reset" value="Reset" />
 		</form>
-		<br><br>
+		<br>
+		<hr>
+		
 		<form method="post" id="find_product" action="find_product_submit.php" >
+			<h3>Find Product</h3>
 			<fieldset>
-				<legend>Find Product</legend>
+				<legend>Product Details</legend>
 				
 				<p><label for="find_product_sku">SKU</label>
 					<input type="text" name="find_product_sku" id="find_product_sku" maxlength="40" size="25" pattern="^[a-zA-Z0-9]+$" title="Must only be letters or numbers" />
@@ -117,10 +123,45 @@ $(document).ready(function(){
 			
 			<input type="submit" value="Find Product" />
 		</form>
-		<br><br>
-		<form method="post" id="edit_product" action="edit_product_submit.php" >
+		<br>
+		<hr>
+		
+		<form method="post" id="find_limited" action="find_limited_submit.php" >
+			<h3>Find Limited Products</h3>
 			<fieldset>
-				<legend>Edit Product</legend>
+				<legend>Find By</legend>
+				
+				<p><label for="limited">Limited</label>
+					<input type="radio" name="lowstock" value="limited" checked="checked" />
+					<label for="business">Out of Stock</label>
+					<input type="radio" name="lowstock" value="out_of_stock" />
+				</p>
+				
+				<p>Or</p>
+				
+				<p><label for="find_limited_less_than">Stock with Less Than</label>
+					<input type="number" name="find_limited_less_than" min="0" max="99999" />
+				</p>
+			</fieldset>
+			
+			<?php
+				if (isset ($_SESSION["find_limited_result"]) && $_SESSION["find_limited_result"] != "")
+				{
+					$message = $_SESSION["find_limited_result"];
+					echo "<div id=errmsg>", $message, "</div>";
+					$_SESSION["find_limited_result"] = "";
+				}
+			?>
+			
+			<input type="submit" value="Find" />
+		</form>
+		<br>
+		<hr>
+		
+		<form method="post" id="edit_product" action="edit_product_submit.php" >
+			<h3>Edit Products</h3>
+			<fieldset>
+				<legend>Product Details</legend>
 				
 				<p><br><label for="edit_product_sku">Edit by: SKU</label>
 					<input type="text" name="edit_product_sku" id="edit_product_sku" maxlength="255" size="25" />
@@ -185,15 +226,18 @@ $(document).ready(function(){
 			
 			<input type="submit" value="Edit Product" />
 		</form>
-		<br><br>
+		<br>
+		<hr>
+		
 		<?php
 			require_once( "php/settings.php" );
 			$conn = @mysqli_connect( $host, $user, $pwd, $sql_db );
     		$query = mysqli_query($conn,"SELECT * FROM product");
 		?>
 		<form name="bulk_action_form" action="delete_product_submit.php" method="post" onsubmit="return deleteConfirm();"/>
+			<h3>Delete Product</h3>
     		<fieldset>
-    		<legend>Delete Product</legend>
+    		<legend>Product Details</legend>
     		<table border="1">
         		<thead>
         		<tr>
