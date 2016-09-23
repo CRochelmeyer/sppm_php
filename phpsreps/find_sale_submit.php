@@ -15,7 +15,7 @@
 	}
 	$query = mysqli_query($conn,"SELECT product_sale_item.product_id, product_sale_item.quantity_sold, sale.sale_id, sale.time_created, sale.sale_amount FROM product_sale_item INNER JOIN sale ON product_sale_item.sale_id=sale.sale_id WHERE sale.time_created BETWEEN '$datefrom' AND'$dateto';");
 	if(mysqli_num_rows($query) > 0) {
-		$success = "<fieldset><legend>Viewing all sales between the dates selected</legend><table border=\"1\">
+		$success = "<fieldset><legend>Showing all sales between $datefrom and $dateto</legend><table border=\"1\">
 					<tr>
 					<th scope=\"row\">Product ID</th>
 					<th scope=\"row\">Sale ID</th>
