@@ -15,13 +15,34 @@
 	die("Connection failed: " . $conn->connect_error);
 	}
 
-	$query = "SELECT * FROM product 
-	WHERE sku = '$sku' or name = '$name' or type = '$type';";
-	$result = $conn->query($query);
-	if ($result->num_rows > 0) {
-    	while ($row = $result->fetch_assoc()) {
-        $success = "SKU: " . $row["sku"]. " <br>Name: " . $row["name"]. "<br> Type: " . $row["type"]. "<br> Price: $" . $row["price_per_unit"]. "<br> Quantity: " . $row["active_for_sale"]. "<br>";
+	$query = mysqli_query($conn, "SELECT * FROM product WHERE sku = '$sku' or name = '$name' or type = '$type';");
+	//$result = $conn->query($query);
+	if(mysqli_num_rows($query) > 0) {
+		$success = "<fieldset><legend>Showing all items with SKU: $sku Name: $name Type: $type</legend><table border=\"1\">
+					<tr>
+					<th scope=\"row\">SKU</th>
+					<th scope=\"row\">Name</th>
+					<th scope=\"row\">Type</th>
+					<th scope=\"row\">Price</th>
+					<th scope=\"row\">Quantity</th>
+					</tr>";
+
+    	while($row = mysqli_fetch_assoc($query)) {
+    		$s = $row["sku"];
+    		$n = $row["name"];
+    		$t = $row["type"];
+    		$p = $row["price_per_unit"];
+    		$q = $row["quantity"];
+
+    		$success .= "<tr>
+						<td>$s</td>
+						<td>$n</td>
+						<td>$t</td>
+						<td>$p</td>
+						<td>$q</td>
+						</tr>";
     	}
+    	$success .= "</table></fieldset>";
 	} else {
     	$errMsg = "No results found!";
 	}

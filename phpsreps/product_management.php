@@ -116,7 +116,7 @@ $(document).ready(function(){
 				if (isset ($_SESSION["find_product_result"]) && $_SESSION["find_product_result"] != "")
 				{
 					$message = $_SESSION["find_product_result"];
-					echo "<div id=errmsg>", $message, "</div>";
+					echo "<div>", $message, "</div>";
 					$_SESSION["find_product_result"] = "";
 				}
 			?>
