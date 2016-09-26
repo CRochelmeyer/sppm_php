@@ -13,6 +13,38 @@
 	<title>PHP-SRePS - Sales</title>
 	<link href= "styles/style.css" rel="stylesheet"/>
 	<script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		function deleteConfirm(){
+		    var result = confirm("Are you sure to delete this item(s)?");
+		    if(result){
+		        return true;
+		    }else{
+		        return false;
+		    }
+		}
+
+		$(document).ready(function(){
+		    $('#select_all').on('click',function(){
+		        if(this.checked){
+		            $('.checkbox').each(function(){
+		                this.checked = true;
+		            });
+		        }else{
+		             $('.checkbox').each(function(){
+		                this.checked = false;
+		            });
+		        }
+		  });
+		    
+		    $('.checkbox').on('click',function(){
+		        if($('.checkbox:checked').length == $('.checkbox').length){
+		            $('#select_all').prop('checked',true);
+		        }else{
+		            $('#select_all').prop('checked',false);
+		        }
+		    });
+		});
+	</script>
 </head>
 
 <body>
@@ -84,30 +116,28 @@
 				}
 			?>
 		</form>
-		<br><br>
+		<br><hr>
 		<form action="find_sale_submit.php" method="post">
-                <h3><legend>Find Sale</legend></h3>
-                <fieldset>
-                <p><label>Date From:</label>
-                <input type="date" name="datefrom" value="<?php echo date('Y-m-d'); ?>" /> &nbsp
-                <label>Date To:</label>
-                <input type="date" name="dateto" value="<?php echo date('Y-m-d'); ?>" /></p>
-                </fieldset>
-
-                <input type="submit" value="Search" />
-                <?php
-				if (isset ($_SESSION["find_sale_result"]) && $_SESSION["find_sale_result"] != "")
-				{
-					$message = $_SESSION["find_sale_result"];
-					echo "<div>", $message, "</div>";
-					$_SESSION["find_sale_result"] = "";
-				}
-				?>
-            </form>
-
-		<hr>
+            <h3>Edit Sale</h3>
+            <fieldset>
+            	<legend>Find Sale</legend>
+	            <p><label>Date From:</label>
+	            <input type="date" name="datefrom" value="<?php echo date('Y-m-d'); ?>" /> &nbsp
+	            <label>Date To:</label>
+	            <input type="date" name="dateto" value="<?php echo date('Y-m-d'); ?>" />
+	            </p>
+            </fieldset>
+            <input type="submit" value="Search" />
+		</form>
+        <?php
+		if (isset ($_SESSION["find_sale_result"]) && $_SESSION["find_sale_result"] != "")
+		{
+			$message = $_SESSION["find_sale_result"];
+			echo "<div>", $message, "</div>";
+			$_SESSION["find_sale_result"] = "";
+		}
+		?>
 	</article>
-	
 	<?php
 		require_once( "php/footer.php" );
 	?>
