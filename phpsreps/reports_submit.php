@@ -45,8 +45,80 @@
 		header ("location:report.php");
 	}
 	
-	// If View Report button was clicked
-	if (isset ($_POST["view_report"]))
+	$errMsg = "";
+	$rdatefrom = htmlspecialchars(trim($_POST["rdatefrom"]));
+	$rdateto = htmlspecialchars (trim ($_POST["rdateto"]));
+	$_SESSION['rdatefrom'] = $rdatefrom;
+	$_SESSION['rdateto'] = $rdateto;
+
+	require_once( "php/settings.php" );
+	$conn = @mysqli_connect( $host, $user, $pwd, $sql_db );
+
+	if ($conn->connect_error) {
+	die("Connection failed: " . $conn->connect_error);
+	}
+	$query = mysqli_query($conn,"SELECT ps.product_id, ps.quantity_sold, s.sale_id, s.time_created, s.sale_amount, p.quantity, p.sku, p.name, p.type 
+		FROM product_sale_item ps
+		INNER JOIN sale s ON ps.sale_id=s.sale_id 
+		INNER JOIN product p ON p.product_id=ps.product_id 
+		WHERE s.time_created BETWEEN '$rdatefrom' AND'$rdateto';");
+
+	if(mysqli_num_rows($query) > 0) {
+		$success = "<fieldset><legend>Displaying sales report between $rdatefrom and $rdateto</legend><table border=\"1\">
+					<tr>
+					<th scope=\"row\">Product ID</th>
+					<th scope=\"row\">Sale ID</th>
+					<th scope=\"row\">SKU</th>
+					<th scope=\"row\">Product Name</th>
+					<th scope=\"row\">Type</th>
+					<th scope=\"row\">Quantity Sold</th>
+					<th scope=\"row\">Quantity Remaining</th>
+					<th scope=\"row\">Time of sale</th>
+					<th scope=\"row\">Total sale amount</th>
+					</tr>";
+    	while($row = mysqli_fetch_assoc($query)) {
+				$pid = $row["product_id"];
+				$sid = $row["sale_id"];
+				$sku = $row["sku"];
+				$name = $row["name"];
+				$type = $row["type"];
+				$quan = $row["quantity_sold"];
+				$quanr = $row["quantity"];
+				$time = $row["time_created"];
+				$amount = $row["sale_amount"];
+
+    			$success .= "<tr>
+						<td>$pid</td>
+						<td>$sid</td>
+						<td>$sku</td>
+						<td>$name</td>
+						<td>$type</td>
+						<td>$quan</td>
+						<td>$quanr</td>
+						<td>$time</td>
+						<td>$amount</td>
+						</tr>";
+  
+    	}
+	} 
+	else {
+    	$errMsg = "No results found!";
+	}
+	$success .= "<a class=\"btn\" href=\"export.php\"><input type=\"button\" value=\"Download as CSV\" /></table></fieldset>";
+
+	mysqli_free_result ($query);
+
+	if ($errMsg != "") //check for errors
+	{
+		$_SESSION["find_report_result"] = "<p>$errMsg</p>";
+		header ("location:reports.php");
+	}else
+	{
+		$_SESSION["find_report_result"] = $success;
+		header ("location:reports.php");
+	}
+	$conn->close();
+	/*if (isset ($_POST["view_report"]))
 	{
 		$errMsg = "";
 		
@@ -151,5 +223,5 @@
 	}
 	
 	// In exceptions, return to sales management
-	header ("location:reports.php");
+	header ("location:reports.php");*/
 ?>

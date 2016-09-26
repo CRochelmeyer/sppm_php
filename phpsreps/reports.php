@@ -29,13 +29,13 @@
 		<form method="post" id="view_report" action="reports_submit.php" novalidate="novalidate" >
 			<h3>View Report</h3>
 			<fieldset>
-				<legend>Select Time Range</legend>
+				<legend>Select a range</legend>
 				
-				<p><label for="report_date_from">Date From</label>
-					<input type="date" name="report_date_from" value="<?php echo date('Y-m-d'); ?>" /> &nbsp
+				<p><label for="rdate_from">Date From</label>
+					<input type="date" name="rdatefrom" value="<?php echo date('Y-m-d'); ?>" /> &nbsp
 					
-					<label for="report_date_to">Date To</label>
-					<input type="date" name="report_date_to" value="<?php echo date('Y-m-d'); ?>" />
+					<label for="rdate_to">Date To</label>
+					<input type="date" name="rdateto" value="<?php echo date('Y-m-d'); ?>" />
 				</p>
 			</fieldset>
 			
@@ -61,6 +61,7 @@
 			
 			<input type="submit" name="reset" value="Reset" />
 			<input type="submit" name="view_report" value="View Report" />
+
 		
 			<?php
 				if (isset ($_SESSION["report_view_err"]) && $_SESSION["report_view_err"] != "")
@@ -69,12 +70,11 @@
 					echo "<div id=errmsg>", $message, "</div>";
 					$_SESSION["report_view_err"] = "";
 				}
-				else if (isset ($_SESSION["report_view_success"]) && $_SESSION["report_view_success"] != "")
+				else if (isset ($_SESSION["find_report_result"]) && $_SESSION["find_report_result"] != "")
 				{
-					$message = $_SESSION["report_view_success"];
+					$message = $_SESSION["find_report_result"];
 					echo "<div id=report_success>", $message, "</div>";
-					$_SESSION["report_view_success"] = "";
-					unset ($_SESSION["sale_table"]);
+					$_SESSION["find_report_result"] = "";
 				}
 			?>
 		</form>
