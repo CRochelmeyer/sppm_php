@@ -89,10 +89,9 @@
                 <h3><legend>Find Sale</legend></h3>
                 <fieldset>
                 <p><label>Date From:</label>
-                <input type="date" name="datefrom" /></p>
-                <p><label>Date To:</label>
-                <input type="date" name="dateto" /></p>
-                <br>
+                <input type="date" name="datefrom" value="<?php echo date('Y-m-d'); ?>" /> &nbsp
+                <label>Date To:</label>
+                <input type="date" name="dateto" value="<?php echo date('Y-m-d'); ?>" /></p>
                 </fieldset>
 
                 <input type="submit" value="Search" />
