@@ -15,8 +15,9 @@
 	}
 	$query = mysqli_query($conn,"SELECT product_sale_item.product_id, product_sale_item.quantity_sold, sale.sale_id, sale.time_created, sale.sale_amount FROM product_sale_item INNER JOIN sale ON product_sale_item.sale_id=sale.sale_id WHERE sale.time_created BETWEEN '$datefrom' AND'$dateto';");
 	if(mysqli_num_rows($query) > 0) {
-		$success = "<fieldset><legend>Showing all sales between $datefrom and $dateto</legend><table border=\"1\">
+		$success = "<form action=\"delete_sale_submit.php\" method=\"post\" onsubmit=\"return deleteConfirm();\"><fieldset><legend>Showing all sales between $datefrom and $dateto</legend><table border=\"1\">
 					<tr>
+					<th>Select</th>
 					<th scope=\"row\">Product ID</th>
 					<th scope=\"row\">Sale ID</th>
 					<th scope=\"row\">Quantity</th>
@@ -31,6 +32,7 @@
 				$amount = $row["sale_amount"];
 
     			$success .= "<tr>
+						<td align=\"center\"><input type=\"checkbox\" name=\"checked_id[]\" class=\"checkbox\" value=\"$sid\"/></td>
 						<td>$pid</td>
 						<td>$sid</td>
 						<td>$quan</td>
@@ -39,7 +41,8 @@
 						</tr>";
   
     	}
-    	$success .= "</table></fieldset>";
+    	$success .= "</table></fieldset><input type=\"submit\" name=\"bulk_delete_submit\" value=\"Delete\" />
+		</form>";
 	} else {
     	$errMsg = "No results found!";
 	}
