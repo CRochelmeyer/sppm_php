@@ -14,37 +14,37 @@
 	<link href= "styles/style.css" rel="stylesheet"/>
 	<script src="jquery.min.js"></script>
 	<script type="text/javascript">
-function deleteConfirm(){
-    var result = confirm("Are you sure to delete this item(s)?");
-    if(result){
-        return true;
-    }else{
-        return false;
-    }
-}
+		function deleteConfirm(){
+		    var result = confirm("Are you sure to delete this item(s)?");
+		    if(result){
+		        return true;
+		    }else{
+		        return false;
+		    }
+		}
 
-$(document).ready(function(){
-    $('#select_all').on('click',function(){
-        if(this.checked){
-            $('.checkbox').each(function(){
-                this.checked = true;
-            });
-        }else{
-             $('.checkbox').each(function(){
-                this.checked = false;
-            });
-        }
-  });
-    
-    $('.checkbox').on('click',function(){
-        if($('.checkbox:checked').length == $('.checkbox').length){
-            $('#select_all').prop('checked',true);
-        }else{
-            $('#select_all').prop('checked',false);
-        }
-    });
-});
-</script>
+		$(document).ready(function(){
+		    $('#select_all').on('click',function(){
+		        if(this.checked){
+		            $('.checkbox').each(function(){
+		                this.checked = true;
+		            });
+		        }else{
+		             $('.checkbox').each(function(){
+		                this.checked = false;
+		            });
+		        }
+		  });
+		    
+		    $('.checkbox').on('click',function(){
+		        if($('.checkbox:checked').length == $('.checkbox').length){
+		            $('#select_all').prop('checked',true);
+		        }else{
+		            $('#select_all').prop('checked',false);
+		        }
+		    });
+		});
+	</script>
 </head>
 
 <body>
