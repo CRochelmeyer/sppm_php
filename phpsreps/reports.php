@@ -32,7 +32,7 @@
 				<legend>Select a range</legend>
 				
 				<p><label for="rdate_from">Date From</label>
-					<input type="date" name="rdatefrom" value="<?php echo date('Y-m-d'); ?>" /> &nbsp
+					<input type="date" name="rdatefrom" value="<?php echo date('Y-m-d', strtotime("-1 month")); ?>" /> &nbsp
 					
 					<label for="rdate_to">Date To</label>
 					<input type="date" name="rdateto" value="<?php echo date('Y-m-d'); ?>" />
