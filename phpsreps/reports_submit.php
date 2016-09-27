@@ -104,7 +104,7 @@
 	else {
     	$errMsg = "No results found!";
 	}
-	$success .= "<a class=\"btn\" href=\"export.php\"><input type=\"button\" value=\"Download as CSV\" /></table></fieldset>";
+	$success .= "<a class=\"btn\" href=\"export.php\"><input type=\"button\" value=\"Download as CSV\" /></a></table></fieldset>";
 
 	mysqli_free_result ($query);
 
