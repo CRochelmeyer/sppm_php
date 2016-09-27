@@ -122,7 +122,7 @@
             <fieldset>
             	<legend>Find Sale</legend>
 	            <p><label>Date From:</label>
-	            <input type="date" name="datefrom" value="<?php echo date('Y-m-d'); ?>" /> &nbsp
+	            <input type="date" name="datefrom" value="<?php echo date('Y-m-d', strtotime("-1 month")); ?>" /> &nbsp
 	            <label>Date To:</label>
 	            <input type="date" name="dateto" value="<?php echo date('Y-m-d'); ?>" />
 	            </p>
