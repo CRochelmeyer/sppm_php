@@ -165,13 +165,22 @@
 				
 				<p><br><label for="edit_product_sku">Edit by: SKU</label>
 					<input type="text" name="edit_product_sku" id="edit_product_sku" maxlength="255" size="25" />
-				<?php
-					if (isset ($_SESSION["edit_product_v_sku"]) && $_SESSION["edit_product_v_sku"] != "")
-					{
-						echo $_SESSION["edit_product_v_sku"];
-						unset($_SESSION["edit_product_v_sku"]);
-					}
-				?>
+						<?php
+							if (isset ($_SESSION["edit_product_v_sku"]) && $_SESSION["edit_product_v_sku"] != "")
+							{
+								echo $_SESSION["edit_product_v_sku"];
+								unset($_SESSION["edit_product_v_sku"]);
+							}
+						?>
+					<label for="edit_product_pid">Or: Product ID</label>
+					<input type="text" name="edit_product_pid" id="edit_product_pid" maxlength="255" size="25" />
+						<?php
+							if (isset ($_SESSION["edit_product_v_pid"]) && $_SESSION["edit_product_v_pid"] != "")
+							{
+								echo $_SESSION["edit_product_v_pid"];
+								unset($_SESSION["edit_product_v_pid"]);
+							}
+						?>
 				<hr>
 				</p>
 				<p><label for="edit_product_name">Name</label>
@@ -195,7 +204,7 @@
 				?>
 				</p>
 				<p><label for="edit_product_price">Price Per Unit $</label>
-					<input type="number" name="edit_product_price" id="edit_product_price" step="0.01" min="0" />
+					<input type="number" name="edit_product_price" id="edit_product_price" step="0.01" />
 				<?php
 					if (isset ($_SESSION["edit_product_v_price"]) && $_SESSION["edit_product_v_price"] != "")
 					{
@@ -205,7 +214,7 @@
 				?>
 				</p>
 				<p><label for="edit_product_quantity">Quantity</label>
-					<input type="number" name="edit_product_quantity" id="edit_product_quantity" min="0" max="99999" />
+					<input type="number" name="edit_product_quantity" id="edit_product_quantity" />
 					<?php
 					if (isset ($_SESSION["edit_product_v_quantity"]) && $_SESSION["edit_product_v_quantity"] != "")
 					{
