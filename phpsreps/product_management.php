@@ -133,7 +133,7 @@ $(document).ready(function(){
 				
 				<p><label for="limited">Limited</label>
 					<input type="radio" name="lowstock" value="limited" checked="checked" />
-					<label for="business">Out of Stock</label>
+					<label for="out_of_stock">Out of Stock</label>
 					<input type="radio" name="lowstock" value="out_of_stock" />
 				</p>
 				
