@@ -85,7 +85,7 @@
 				if (isset ($_SESSION["add_product_result"]) && $_SESSION["add_product_result"] != "")
 				{
 					$message = $_SESSION["add_product_result"];
-					echo "<div id=errmsg>", $message, "</div>";
+					echo "$message";
 					$_SESSION["add_product_result"] = "";
 				}
 			?>
@@ -116,7 +116,7 @@
 				if (isset ($_SESSION["find_product_result"]) && $_SESSION["find_product_result"] != "")
 				{
 					$message = $_SESSION["find_product_result"];
-					echo "<div>", $message, "</div>";
+					echo "$message";
 					$_SESSION["find_product_result"] = "";
 				}
 			?>
@@ -148,7 +148,7 @@
 				if (isset ($_SESSION["find_limited_result"]) && $_SESSION["find_limited_result"] != "")
 				{
 					$message = $_SESSION["find_limited_result"];
-					echo "<div id=errmsg>", $message, "</div>";
+					echo "$message";
 					$_SESSION["find_limited_result"] = "";
 				}
 			?>

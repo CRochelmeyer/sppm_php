@@ -123,11 +123,11 @@
 			
 		if ($errMsg != "") //check for errors
 		{
-			$_SESSION["add_product_result"] = "<p>$errMsg</p>";
+			$_SESSION["add_product_result"] = "<div id=errmsg><p>$errMsg</p></div>";
 			header ("location:product_management.php");
 		}else
 		{
-			$_SESSION["add_product_result"] = "<p>$success</p>";
+			$_SESSION["add_product_result"] = "<div id=success><p>$success</p></div>";
 			header ("location:product_management.php");
 		}
 	}

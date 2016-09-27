@@ -110,11 +110,11 @@
 		
 		if ($errMsg != "")
 		{
-			$_SESSION["find_limited_result"] = "<p>$errMsg</p>";
+			$_SESSION["find_limited_result"] = "<div id=errmsg><p>$errMsg</p></div>";
 			header ("location:product_management.php");
 		}else
 		{
-			$_SESSION["find_limited_result"] = "<p>$success</p>";
+			$_SESSION["find_limited_result"] = "<div id=success><p>$success</p></div>";
 			header ("location:product_management.php");
 		}
 	}

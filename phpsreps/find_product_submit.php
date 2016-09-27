@@ -49,11 +49,11 @@
 	mysqli_free_result ($result);
 	if ($errMsg != "") //check for errors
 	{
-		$_SESSION["find_product_result"] = "<p>$errMsg</p>";
+		$_SESSION["find_product_result"] = "<div id=errmsg><p>$errMsg</p></div>";
 		header ("location:product_management.php");
 	}else
 	{
-		$_SESSION["find_product_result"] = "<p>$success</p>";
+		$_SESSION["find_product_result"] = "<div id=success><p>$success</p></div>";
 		header ("location:product_management.php");
 	}
 	$conn->close();
