@@ -1,18 +1,18 @@
 <?php
-	session_start();							//start the session
+	session_start();							
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<meta charset="utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="description" 	content="Products Page of PHP-SRePS" />
 	<meta name="keywords" 		content="HTML5, tags" />
 	<meta name="author" 		content="Chris Hendrickson, Leon Vaisman, Claire Rochelmeyer"  />
 	<title>PHP-SRePS - Products</title>
 	<link href= "styles/style.css" rel="stylesheet"/>
-	<script src="jquery.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		function deleteConfirm(){
 		    var result = confirm("Are you sure to delete this item(s)?");
@@ -96,7 +96,7 @@
 		<br>
 		<hr>
 		
-		<form method="post" id="find_product" action="find_product_submit.php" >
+		<form method="post" action="find_product_submit.php" >
 			<h3>Find Product</h3>
 			<fieldset>
 				<legend>Product Details</legend>
@@ -111,18 +111,16 @@
 					<input type="text" name="find_product_type" id="find_product_type" maxlength="100" size="50" pattern="^[a-zA-Z0-9 -]+$" title="Can only contain A-Z, a-z, 0-9, and -" />
 				</p>
 			</fieldset>
-			
+			<input type="submit" value="Find Product" />
+			</form>
 			<?php
 				if (isset ($_SESSION["find_product_result"]) && $_SESSION["find_product_result"] != "")
 				{
 					$message = $_SESSION["find_product_result"];
-					echo "$message";
+					echo "<div>", $message, "</div>";
 					$_SESSION["find_product_result"] = "";
 				}
 			?>
-			
-			<input type="submit" value="Find Product" />
-		</form>
 		<br>
 		<hr>
 		
@@ -235,47 +233,6 @@
 			
 			<input type="submit" value="Edit Product" />
 		</form>
-		<br>
-		<hr>
-		
-		<?php
-			require_once( "php/settings.php" );
-			$conn = @mysqli_connect( $host, $user, $pwd, $sql_db );
-    		$query = mysqli_query($conn,"SELECT * FROM product");
-		?>
-		<form name="bulk_action_form" action="delete_product_submit.php" method="post" onsubmit="return deleteConfirm();"/>
-			<h3>Delete Product</h3>
-    		<fieldset>
-    		<legend>Product Details</legend>
-    		<table border="1">
-        		<thead>
-        		<tr>
-            		<th>Select All<input type="checkbox" name="select_all" id="select_all" value=""/></th>        
-            		<th>SKU</th>
-            		<th>Name</th>
-            		<th>Type</th>
-            		<th>Price</th>
-        		</tr>
-        		</thead>
-        		<?php
-            		if(mysqli_num_rows($query) > 0){
-                		while($row = mysqli_fetch_assoc($query)){
-        		?>
-        		<tr>
-            		<td align="center"><input type="checkbox" name="checked_id[]" class="checkbox" value="<?php echo $row['sku']; ?>"/></td>        
-            		<td><?php echo $row['sku']; ?></td>
-            		<td><?php echo $row['name']; ?></td>
-            		<td><?php echo $row['type']; ?></td>
-            		<td><?php echo $row['price_per_unit']; ?></td>
-        		</tr> 
-        		<?php } }else{ ?>
-            		<tr><td colspan="5">No records found.</td></tr> 
-        		<?php } ?>
-    		</table>
-    		</fieldset>
-    		<input type="submit" class="btn btn-danger" name="bulk_delete_submit" value="Delete"/>
-		</form>
-		<br><br>
 	</article>
 	
 	<?php
