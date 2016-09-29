@@ -3,7 +3,6 @@
 	session_start();							//start the session
 	
 	$errMsg = "";
-	$query = "";
 	$sku = htmlspecialchars (trim($_POST["find_product_sku"]));
 	$name = htmlspecialchars (trim ($_POST["find_product_name"]));
 	$type = htmlspecialchars (trim ($_POST["find_product_type"]));
@@ -27,10 +26,11 @@
 	else {
 		$query = mysqli_query($conn, "SELECT * FROM product;");
 	}
-
+	
 	if(mysqli_num_rows($query) > 0) {
-		$success = "<fieldset><legend>Showing all items with SKU: $sku, Name: $name, Type: $type</legend><table border=\"1\">
+		$success = "<form name=\"bulk_action_form\" action=\"delete_product_submit.php\" method=\"post\" onsubmit=\"return deleteConfirm();\"><fieldset><legend>Showing all items with SKU: $sku, Name: $name, Type: $type</legend><table border=\"1\">
 					<tr>
+					<th>Select</th>
 					<th scope=\"row\">Product ID</th>
 					<th scope=\"row\">SKU</th>
 					<th scope=\"row\">Name</th>
@@ -48,6 +48,7 @@
     		$q = $row["quantity"];
 
     		$success .= "<tr>
+    					<td align=\"center\"><input type=\"checkbox\" name=\"checked_id[]\" class=\"checkbox\" value=\"$s\"/></td>
 						<td>$i</td>
 						<td>$s</td>
 						<td>$n</td>
@@ -56,18 +57,19 @@
 						<td>$q</td>
 						</tr>";
     	}
-    	$success .= "</table></fieldset>";
+    	$success .= "</table></fieldset><input type=\"submit\" name=\"bulk_delete_submit\" value=\"Delete\" />
+		</form>";
 	} else {
     	$errMsg = "No results found!";
 	}
 	mysqli_free_result ($result);
-	if ($errMsg != "") //check for errors
+	if ($errMsg != "") 
 	{
 		$_SESSION["find_product_result"] = "<div id=errmsg><p>$errMsg</p></div>";
 		header ("location:product_management.php");
 	}else
 	{
-		$_SESSION["find_product_result"] = "<div id=success><p>$success</p></div>";
+		$_SESSION["find_product_result"] = $success;
 		header ("location:product_management.php");
 	}
 	$conn->close();
