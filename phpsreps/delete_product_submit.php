@@ -14,7 +14,7 @@
         foreach($idArr as $sku){
             mysqli_query($conn,"DELETE FROM product WHERE sku =".$sku);
         }
-        $_SESSION['success_msg'] = 'Users have been deleted successfully.';
+        $_SESSION['success_msg'] = 'Item(s) have been deleted successfully.';
         header("Location:product_management.php");
     }
 	
