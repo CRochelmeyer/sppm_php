@@ -32,16 +32,16 @@
 				<legend>Display By</legend>
 				
 				<p><label for="weekly">Weekly</label>
-					<input type="radio" name="time_frame" value="weekly" checked="checked" />
+					<input type="radio" name="predict_time_frame" value="weekly" checked="checked" />
 					<label for="monthly">Monthly</label>
-					<input type="radio" name="time_frame" value="monthly" />
+					<input type="radio" name="predict_time_frame" value="monthly" />
 				</p>
 				
 				<p><label for="predict_id">ID</label>
-					<input type="number" name="predict_id" min="0" max="99999" required="required" />
+					<input type="number" name="predict_id" min="0" max="99999" required="required" autofocus="autofocus" title="Must only be numbers" />
 					&nbsp
 					<label for="predict_sku">SKU</label>
-					<input type="text" name="predict_sku" maxlength="40" size="25" pattern="^[a-zA-Z0-9]+$" required="required" autofocus="autofocus" title="Must only be letters or numbers" />
+					<input type="text" name="predict_sku" maxlength="40" size="25" pattern="^[a-zA-Z0-9]+$" required="required" title="Must only be letters or numbers" />
 					&nbsp
 					<label for="predict_name">Name</label>
 					<input type="text" name="predict_name" maxlength="100" size="50" pattern="^[a-zA-Z0-9 -]+$" required="required" title="Can only contain A-Z, a-z, 0-9, and -" />
@@ -57,16 +57,16 @@
 			</fieldset>
 			
 			<?php
-				if (isset ($_SESSION["report_input_error"]) && $_SESSION["report_input_error"] != "")
+				if (isset ($_SESSION["predict_input_error"]) && $_SESSION["predict_input_error"] != "")
 				{
-					$message = $_SESSION["report_input_error"];
+					$message = $_SESSION["predict_input_error"];
 					echo "<div id=errmsg>", $message, "</div>";
-					$_SESSION["report_input_error"] = "";
+					$_SESSION["predict_input_error"] = "";
 				}
 			?>
 			
-			<input type="submit" name="reset" value="Reset" />
 			<input type="submit" name="display_prediction" value="Display Prediction" />
+			<input type="submit" name="reset" value="Reset" />
 
 		
 			<?php
