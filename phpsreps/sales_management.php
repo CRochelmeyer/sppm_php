@@ -31,7 +31,7 @@
 		        	return false;
 		    	}	
 		}
-		
+
 		$(document).ready(function(){
 		    $('#select_all').on('click',function(){
 		        if(this.checked){
@@ -136,7 +136,7 @@
 	            <input type="date" name="dateto" value="<?php echo date('Y-m-d'); ?>" />
 	            </p>
             </fieldset>
-            <input type="submit" value="Search" />
+            <input type="submit" name="find_sale" value="Search" />
 		</form>
         <?php
 		if (isset ($_SESSION["find_sale_result"]) && $_SESSION["find_sale_result"] != "")
