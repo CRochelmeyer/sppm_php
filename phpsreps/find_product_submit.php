@@ -32,7 +32,7 @@
 	}
 	
 	if(mysqli_num_rows($query) > 0) {
-		$success = "<form name=\"bulk_action_form\" action=\"delete_product_submit.php\" method=\"post\" onsubmit=\"return deleteConfirm();\"><fieldset><legend>Showing all items with SKU: $sku, Name: $name, Type: $type</legend><table border=\"1\">
+		$success = "<form name=\"bulk_action_form\" id=\"jsform\" action=\"delete_product_submit.php\" method=\"post\" onsubmit=\"if(document.getElementById('checkbox').checked) { return deleteConfirm();} else {return x();}\"><fieldset><legend>Showing all items with SKU: $sku, Name: $name, Type: $type</legend><table border=\"1\">
 					<tr>
 					<th>Select</th>
 					<th scope=\"row\">Product ID</th>
@@ -52,7 +52,7 @@
     		$q = $row["quantity"];
 
     		$success .= "<tr>
-    					<td align=\"center\"><input type=\"checkbox\" name=\"checked_id[]\" class=\"checkbox\" value=\"$s\"/></td>
+    					<td align=\"center\"><input type=\"checkbox\" id=\"checkbox\" name=\"checkbox[]\" class=\"checkbox\" value=\"$s\"/></td>
 						<td>$i</td>
 						<td>$s</td>
 						<td>$n</td>
