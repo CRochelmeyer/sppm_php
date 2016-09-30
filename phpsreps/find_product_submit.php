@@ -3,6 +3,7 @@
 	session_start();							//start the session
 	
 	$errMsg = "";
+	$pid = htmlspecialchars (trim($_POST["find_product_id"]));
 	$sku = htmlspecialchars (trim($_POST["find_product_sku"]));
 	$name = htmlspecialchars (trim ($_POST["find_product_name"]));
 	$type = htmlspecialchars (trim ($_POST["find_product_type"]));
@@ -14,6 +15,9 @@
 	die("Connection failed: " . $conn->connect_error);
 	}
 
+	if ($_POST["find_product_id"] != "") {
+		$query = mysqli_query($conn, "SELECT * FROM product WHERE product_id LIKE '%$pid%';");
+	}
 	if ($_POST["find_product_sku"] != "") {
 		$query = mysqli_query($conn, "SELECT * FROM product WHERE sku LIKE '%$sku%';");
 	}
