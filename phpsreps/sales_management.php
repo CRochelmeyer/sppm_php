@@ -23,6 +23,15 @@
 		    }
 		}
 
+		function x(){
+			var result = confirm("You haven't selected any items, do you wish to continue?");
+		    	if(result){
+		        	return true;
+		    	}else{
+		        	return false;
+		    	}	
+		}
+		
 		$(document).ready(function(){
 		    $('#select_all').on('click',function(){
 		        if(this.checked){
