@@ -100,7 +100,9 @@
 			<h3>Find Product</h3>
 			<fieldset>
 				<legend>Product Details</legend>
-				
+				<p><label for="find_product_id">Product ID</label>
+					<input type="text" name="find_product_id" id="find_product_id" maxlength="40" size="25" pattern="^[a-zA-Z0-9]+$" title="Must only be letters or numbers" />
+				</p>
 				<p><label for="find_product_sku">SKU</label>
 					<input type="text" name="find_product_sku" id="find_product_sku" maxlength="40" size="25" pattern="^[a-zA-Z0-9]+$" title="Must only be letters or numbers" />
 				</p>
