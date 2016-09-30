@@ -15,12 +15,21 @@
 	<script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		function deleteConfirm(){
-		    var result = confirm("Are you sure to delete this item(s)?");
-		    if(result){
-		        return true;
-		    }else{
-		        return false;
-		    }
+		    	var result = confirm("Are you sure to delete this item(s)?");
+		    	if(result){
+		        	return true;
+		    	}else{
+		        	return false;
+		    	}	
+		}
+
+		function x(){
+			var result = confirm("You haven't selected any items, do you wish to continue?");
+		    	if(result){
+		        	return true;
+		    	}else{
+		        	return false;
+		    	}	
 		}
 
 		$(document).ready(function(){
