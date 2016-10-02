@@ -44,6 +44,7 @@
 				{
 					$message = $_SESSION["report_refine"];
 					echo "<div id=report_refine>", $message, "</div>";
+					$_SESSION["report_refine"] = "";
 				}
 			?>
 			
