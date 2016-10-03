@@ -9,6 +9,12 @@
 		header ("location:sales_prediction.php");
 	}
 	
+	function test_input($data) {
+	  $data = trim($data);
+	  $data = stripslashes($data);
+	  $data = htmlspecialchars($data);
+	  return $data;
+	}
 	
 	if (isset ($_POST["display_prediction"]))
 	{
@@ -17,24 +23,46 @@
 		// VALIDATION...
 		//
 		// 
-		$timeframe = $_POST[ "predict_time_frame" ];
+		if ($_POST[ "predict_time_frame" ] != "") {
+			$timeframe = test_input($_POST[ "predict_time_frame" ]);
+		}
 		// $productID - If not "", validate
-		$productID = $_POST[ "predict_id" ];
+		if ($_POST[ "predict_id" ] != "") {
+			$productID = test_input($_POST[ "predict_id" ]);
+			if (!is_numeric ($id) || $id < 0 || $id > 99999999999) {
+				$errMsg .= "Product ID must be > 0 and less than 99999999999.<br />";
+			}
+		}
 		// $productSku - If not "", validate
-		$productSku = $_POST[ "predict_sku" ];
+		if ($_POST[ "predict_sku" ] != "") {
+			$productSku = $_POST[ "predict_sku" ];
+			if (!preg_match ("/^[a-zA-Z0-9]+$/", $productSku) || strlen ($productSku) > 40) {
+				$errMsg .= "SKU must only be letters or numbers and <= 40 characters long.<br />";
+			}
+		}
 		// $productName - If not "", validate
-		$productName = $_POST[ "predict_name" ];
+		if ($_POST[ "predict_name" ] != "") {
+			$productName = $_POST[ "predict_name" ];
+			if (!preg_match ("/^[a-zA-Z0-9 -]+$/", $productName) || strlen ($productName) > 100) {
+				$errMsg .= "Name can only contain A-Z, a-z, 0-9, and - and be <= 100 characters long.<br />";
+			}
+		}
 		// $productType - If not "", validate
-		$productType = $_POST[ "predict_type" ];
-		
+		if ($_POST[ "predict_type" ] != "") {
+			$productType = $_POST[ "predict_type" ];
+			if (!preg_match("/^[a-zA-Z0-9 -]{0,255}$/",$productType)) {
+				$errMsg .= "Only numbers, letters, white space and '-' allowed!<br />";
+			}
+		}
 		// Ensure at least ID, SKU or Name, OR Type is entered
 		// If ID, SKU or Name AND Type is entered, report error as
 		// only allowed to search for a single product OR a type of product
-		
+		/*elseif ($_POST[ "predict_type" ] = "" && $_POST[ "predict_name" ] = "") {
+			$errMsg .= "Can only search by single name or type!<br />";
+		}*/
 		//
 		// Use $errMsg .= "Error was ... at ... <br \>";
 		//
-		
 		// If validation fails return to sales_prediction
 		if ($errMsg != "")
 		{
