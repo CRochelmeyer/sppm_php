@@ -29,7 +29,8 @@ session_start();							//start the session
 					WHERE s.time_created BETWEEN '$rdatefrom' AND'$rdateto' AND (ps.product_id LIKE '$pid' OR p.sku LIKE '$sku' OR p.name LIKE '$nm');");
 
 					if(mysqli_num_rows($query) > 0) {
-					$refine = "<fieldset><legend>Displaying sales report between $rdatefrom and $rdateto, refined by product.</legend><table border=\"1\">
+					$refine = "<fieldset><legend>Displaying sales report between $rdatefrom and $rdateto, refined by product.</legend><div class=\"container-fluid\"><table class=\"table\" border=\"1\">
+					<thead class=\"thead-inverse\">
 					<tr>
 					<th scope=\"row\">Product ID</th>
 					<th scope=\"row\">Sale ID</th>
@@ -40,7 +41,8 @@ session_start();							//start the session
 					<th scope=\"row\">Quantity Remaining</th>
 					<th scope=\"row\">Time of sale</th>
 					<th scope=\"row\">Total sale amount</th>
-					</tr>";
+					</tr>
+					</thead>";
     				
     				while($row = mysqli_fetch_assoc($query)) {
 					$pid = $row["product_id"];
@@ -66,7 +68,7 @@ session_start();							//start the session
 						</tr>";
 
 					}
-					$refine .= "<a class=\"btn\" href=\"export2.php\"><input type=\"button\" value=\"Download as CSV\" /></a></table></fieldset>";
+					$refine .= "<a class=\"btn\" href=\"export2.php\"><input type=\"button\" value=\"Download as CSV\" /></a></table></div></fieldset>";
 				}
 				else {
     				$errMsg = "No results found!";

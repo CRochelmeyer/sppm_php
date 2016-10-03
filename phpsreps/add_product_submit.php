@@ -97,7 +97,7 @@
 				{
 					
 					$success = "<p>Product successfully added!</p>
-					<table border=\"1\">
+					<table class=\"table\" border=\"1\">
 					<tr>
 					<th scope=\"row\">SKU</th>
 					<th scope=\"row\">Name</th>

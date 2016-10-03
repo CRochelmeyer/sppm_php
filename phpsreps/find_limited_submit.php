@@ -70,7 +70,7 @@
 					$errMsg = "There are no products that are limited or out of stock, or have a quantity less than specified.<br \>";
 				}else
 				{
-					$success = "<table border=\"1\">
+					$success = "<table class=\"table\" border=\"1\">
 					<tr>
 					<th scope=\"row\">ID</th>
 					<th scope=\"row\">SKU</th>

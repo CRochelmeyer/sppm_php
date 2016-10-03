@@ -3,7 +3,7 @@
 	
 	function create_success_table ($idArray, $qtyArray, $totArray, $conn)
 	{
-		$success = "<table border=\"1\">
+		$success = "<table class=\"table\" border=\"1\">
 		<tr>
 		<th scope=\"row\">Remove</th>
 		<th scope=\"row\">ID</th>

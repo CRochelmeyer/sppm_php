@@ -26,7 +26,7 @@
 				$success = "<form action=\"delete_sale_submit.php\" method=\"post\" >
 				<fieldset>
 				<legend>Showing all sales between $datefrom and $dateto</legend>
-				<table border=\"1\" style=\"text-align: center;\">
+				<table class=\"table\" border=\"1\" style=\"text-align: center;\">
 				<tr>
 				<th>Select</th>
 				<th scope=\"row\">Sale ID</th>
@@ -55,7 +55,7 @@
 					$sidArray[$i] = $sid;
 					$i++;
 				}
-				$success .= "</table></fieldset><input type=\"submit\" name=\"bulk_delete_submit\" value=\"Delete\" onclick=\"return deleteConfirm();\" />
+				$success .= "</table></fieldset><input type=\"submit\" class=\"btn btn-primary\" name=\"bulk_delete_submit\" value=\"Delete\" onclick=\"return deleteConfirm();\" />
 				</form>";
 				
 				$_SESSION["view_sale_sid"] = $sidArray;

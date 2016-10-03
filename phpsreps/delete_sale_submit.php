@@ -55,7 +55,7 @@
 							$saleAmount = $row["sale_amount"];
 							
 							$success = "<h4>Viewing Sale $saleID, Created on $saleTime</h4>
-							<table border=\"1\" style=\"text-align: center;\">
+							<table class=\"table\" border=\"1\" style=\"text-align: center;\">
 							<tr>
 							<th scope=\"row\">ID</th>
 							<th scope=\"row\">SKU</th>
